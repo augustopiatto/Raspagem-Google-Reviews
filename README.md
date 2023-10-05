@@ -76,7 +76,13 @@ Which should result in response similar to the following:
 Não vou montar o README bonitinho pq to descobrindo algumas coisas ainda
 
 Doc do serverless (https://www.serverless.com/framework/docs/tutorial)
+
 Doc da URL do Google Review (https://developers.google.com/my-business/content/review-data?hl=pt-br)
+
+API do Google para IDs (https://developers.google.com/maps/documentation/places/web-service/place-id?hl=pt-br):
+ID Nema 595 - ChIJ05IwXQfVmwAR1oh7vekNWno
+ID Nema Humaita - ChIJSarVod9_mQARoFamN9SL0IY
+ID Nema Leblon - ElRBdi4gQXRhdWxmbyBkZSBQYWl2YSwgMTEyMCAtIGxvamEgYyAtIExlYmxvbiwgUmlvIGRlIEphbmVpcm8gLSBSSiwgMjI0NDAtMDM1LCBCcmF6aWwiIhogChYKFAoSCTdqoTaz1ZsAEV4JJmEJdXrGEgZsb2phIGM
 
 Dois fluxos pensados até agora utilizando serverless framework e lambda:
 1. função que pega todas locations e data da ultima review de cada location -> fila do sqs (a mensagem seria um json do tipo {locationId: <id>, lastRview:<datetime>} -> função que roda pegando batches de N locations e faz as capturas e inserts
@@ -85,4 +91,5 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
 Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2 (testar e pegar essa diferença de tempo).
 
 TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/)
+
 TODO - Ver como funciona a fila da AWS (https://aws.amazon.com/pt/sqs/)
