@@ -75,23 +75,59 @@ Which should result in response similar to the following:
 
 Não vou montar o README bonitinho pq to descobrindo algumas coisas ainda
 
-Tutorial de como usar a API do Google (https://jingwen-z.github.io/how-to-get-places-reviews-on-google-maps-by-place-api/)
-Doc oficial da API (https://developers.google.com/maps/documentation/places/web-service/details?hl=pt-br) - Usar parameters
+## Google API
 
-Doc do serverless (https://www.serverless.com/framework/docs/tutorial)
-
-Doc da URL do Google Review (https://developers.google.com/my-business/content/review-data?hl=pt-br)
+Tutorial de como usar a API do Google (https://jingwen-z.github.io/how-to-get-places-reviews-on-google-maps-by-place-api/).
+Doc oficial da API (https://developers.google.com/maps/documentation/places/web-service/details?hl=pt-br) - Usar parameters.
 
 API do Google para IDs (https://developers.google.com/maps/documentation/places/web-service/place-id?hl=pt-br):
+```
 ID Nema 595 - ChIJhxTcDIrVmwARm0brYm21Hkw
 ID Nema Humaita - ChIJizElztN_mQARyfLk7REGZRc
 ID Nema Leblon - ChIJF8dM_x_VmwARHGUmlUaKD5M
+```
+
+Retorno do endpoint (https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJhxTcDIrVmwARm0brYm21Hkw&key=API_KEY&reviews_sort=newest):
+```
+{
+  "html_attributions" : [],
+  "result" : {
+    ...
+    "reviews" : 
+      [
+         {
+            "author_name" : "A . Daniel",
+            "author_url" : "https://www.google.com/maps/contrib/115135628913900329576/reviews",
+            "language" : "pt",
+            "original_language" : "pt",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/ALV-UjVlBRFWne2_0BqRDPjHJ6fXytKzEcGkSPNoVFceXt5O-c4=s128-c0x00000000-cc-rp-mo",
+            "rating" : 5,
+            "relative_time_description" : "uma semana atrás",
+            "text" : "Time 595 muito educados e simpáticos melhor loja equipe sol",
+            "time" : 1695422512,
+            "translated" : false
+         },
+          ...
+      ],
+      ...
+  }
+}
+```
+
+## Serverless
+
+Doc do serverless (https://www.serverless.com/framework/docs/tutorial)
+
+## AWS
+
+TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/)
+
+TODO - Ver como funciona a fila da AWS (https://aws.amazon.com/pt/sqs/)
+
+## Fluxos pensados
+
 Dois fluxos pensados até agora utilizando serverless framework e lambda:
 1. função que pega todas locations e data da ultima review de cada location -> fila do sqs (a mensagem seria um json do tipo {locationId: <id>, lastRview:<datetime>} -> função que roda pegando batches de N locations e faz as capturas e inserts
 2. faz um script que roda tudo em uma função
 
 Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2 (testar e pegar essa diferença de tempo).
-
-TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/)
-
-TODO - Ver como funciona a fila da AWS (https://aws.amazon.com/pt/sqs/)
