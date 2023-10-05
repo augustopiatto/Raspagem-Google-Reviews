@@ -75,6 +75,9 @@ Which should result in response similar to the following:
 
 Não vou montar o README bonitinho pq to descobrindo algumas coisas ainda
 
+Tutorial de como usar a API do Google (https://jingwen-z.github.io/how-to-get-places-reviews-on-google-maps-by-place-api/)
+Doc oficial da API (https://developers.google.com/maps/documentation/places/web-service/details?hl=pt-br) - Usar parameters
+
 Doc do serverless (https://www.serverless.com/framework/docs/tutorial)
 
 Doc da URL do Google Review (https://developers.google.com/my-business/content/review-data?hl=pt-br)
