@@ -1,12 +1,27 @@
 org: ampiatto
 app: projeto-arcca
 service: projeto-arcca
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
 
 functions:
-  function1:
-    handler: index.handler
+  getPlacesReviews:
+    handler: src/index.getPlacesReviews,
+    # events:
+    #   - eventBridge:
+    #     schedule: "* 10 * * *"
+    #     input:
+    #       addresses:
+    #         - "R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003" # Nema 595
+    #         - "R. Cap. Salomão, 11 - Humaitá, Rio de Janeiro - RJ, 22271-040" # Nema Humaita
+    #         - "Av. Ataulfo de Paiva, 1120 - loja c - Leblon, Rio de Janeiro - RJ, 22440-035" # Nema Leblon
+
+  saveReviews:
+    handler: src/index.saveReviews,
+    # events:
+    #   - sqs:
+    #     arn: # TODO
+    #     batchSize: 100

@@ -11,7 +11,6 @@ authorName: 'Serverless, inc.'
 authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 -->
 
-
 # Serverless Framework AWS NodeJS Example
 
 This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework. The deployed function does not include any event definitions as well as any kind of persistence (database). For more advanced configurations check out the [examples repo](https://github.com/serverless/examples/) which includes integrations with SQS, DynamoDB or examples of functions that are triggered in `cron`-like manner. For details about configuration of specific `events`, please refer to our [documentation](https://www.serverless.com/framework/docs/providers/aws/events/).
@@ -49,8 +48,8 @@ Which should result in response similar to the following:
 
 ```json
 {
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
+  "statusCode": 200,
+  "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
 }
 ```
 
@@ -70,7 +69,9 @@ Which should result in response similar to the following:
     "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
 }
 ```
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---
+
 # Minhas anotações até agora
 
 Não vou montar o README bonitinho pq to descobrindo algumas coisas ainda
@@ -80,20 +81,31 @@ Não vou montar o README bonitinho pq to descobrindo algumas coisas ainda
 Tutorial de como usar a API do Google (https://jingwen-z.github.io/how-to-get-places-reviews-on-google-maps-by-place-api/).
 Doc oficial da API (https://developers.google.com/maps/documentation/places/web-service/details?hl=pt-br) - Usar parameters.
 
-API do Google para IDs (https://developers.google.com/maps/documentation/places/web-service/place-id?hl=pt-br):
+Google geralmente altera o ID dos locais, para fazer a busca, vou usar a API (https://maps.googleapis.com/maps/api/geocode/json?address=${address}&sensor=false&key=${API_KEY}):
+
 ```
-ID Nema 595 - ChIJhxTcDIrVmwARm0brYm21Hkw
-ID Nema Humaita - ChIJizElztN_mQARyfLk7REGZRc
-ID Nema Leblon - ChIJF8dM_x_VmwARHGUmlUaKD5M
+Retorno do endpoint
+{
+  "results" : [
+    {
+      ...,
+      "place_id": "ChIJtYuu0V25j4ARwu5e4wwRYgE",
+      ...
+    },
+    ...
+  ]
+}
 ```
 
-Retorno do endpoint (https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJhxTcDIrVmwARm0brYm21Hkw&key=API_KEY&reviews_sort=newest):
+Para fazer a busca dos reviews de cada local, vou usar a API (https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&reviews_sort=newest&key=${API_KEY}):
+
 ```
+Retorno do endpoint
 {
   "html_attributions" : [],
   "result" : {
     ...
-    "reviews" : 
+    "reviews" :
       [
          {
             "author_name" : "A . Daniel",
@@ -116,11 +128,11 @@ Retorno do endpoint (https://maps.googleapis.com/maps/api/place/details/json?pla
 
 ## Serverless
 
+Implementar Lambda na AWS usando Serverless Node (https://www.youtube.com/watch?v=oFYFqOzJdqY)
+
 Doc do serverless (https://www.serverless.com/framework/docs/tutorial)
 
 ## AWS
-
-Implementar Lambda na AWS usando Node (https://www.google.com/search?q=serverless+node+aws+how+to+declare+new+function&rlz=1C1AVNE_pt-BRUS690US690&oq=serverless+node+aws+how+to+declare+new+function&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDc5NzVqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:ec7262b0,vid:YexeiBCEioU,st:0)
 
 TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/)
 
@@ -129,6 +141,7 @@ TODO - Ver como funciona a fila da AWS (https://aws.amazon.com/pt/sqs/)
 ## Fluxos pensados
 
 Dois fluxos pensados até agora utilizando serverless framework e lambda:
+
 1. função que pega todas locations e data da ultima review de cada location -> fila do sqs (a mensagem seria um json do tipo {locationId: <id>, lastRview:<datetime>} -> função que roda pegando batches de N locations e faz as capturas e inserts
 2. faz um script que roda tudo em uma função
 
