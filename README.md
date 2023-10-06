@@ -120,6 +120,8 @@ Doc do serverless (https://www.serverless.com/framework/docs/tutorial)
 
 ## AWS
 
+Implementar Lambda na AWS usando Node (https://www.google.com/search?q=serverless+node+aws+how+to+declare+new+function&rlz=1C1AVNE_pt-BRUS690US690&oq=serverless+node+aws+how+to+declare+new+function&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDc5NzVqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:ec7262b0,vid:YexeiBCEioU,st:0)
+
 TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/)
 
 TODO - Ver como funciona a fila da AWS (https://aws.amazon.com/pt/sqs/)
