@@ -16,32 +16,32 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
 
 1. Função que pega todas locations, reviews e data da última review de cada location -> fila do SQS (a mensagem seria um json do tipo {locationId: <id>, review: <string>, reviewDate: <datetime>}) -> função que roda pegando batches de N locations e faz as capturas e inserts.
 
-#### Vantagens
+   1.1 Vantagens
 
-- Facilita a escalabilidade conforme mais lojas vão sendo aderidas à empresa.
-- Poucas mudanças necessárias até que se chegue em um número realmente gigante de reviews (perto de 1.000.000 reviews por consulta)
+   - Facilita a escalabilidade conforme mais lojas vão sendo aderidas à empresa.
+   - Poucas mudanças necessárias até que se chegue em um número realmente gigante de reviews (perto de 1.000.000 reviews por consulta)
 
-#### Desvantagens
+     1.2 Desvantagens
 
-- Mais complexo de se implementar, pois exige a separação em dois métodos e o uso de fila.
-- Aumento no consumo de dinheiro à AWS por gastar mais recursos.
+   - Mais complexo de se implementar, pois exige a separação em dois métodos e o uso de fila.
+   - Aumento no consumo de dinheiro à AWS por gastar mais recursos.
 
 2. Faz um script que roda tudo em uma função
 
-#### Vantagens
+   2.1 Vantagens
 
-- Implementação inicial mais simples.
-- Uso de menos recursos da AWS, e economia de dinheiro.
+   - Implementação inicial mais simples.
+   - Uso de menos recursos da AWS, e economia de dinheiro.
 
-#### Desvantagens
+   2.2 Desvantagens
 
-- Baixa escalabilidade, precisa de mais suporte dos devs à longo prazo.
+   - Baixa escalabilidade, precisa de mais suporte dos devs à longo prazo.
 
 #### Fluxo escolhido
 
 Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2 (testar e pegar essa diferença de tempo).
 
-![Alt text](image.png)
+[Fluxo](./src/assets/fluxo.png)
 
 ## Alternativas de projetos de captura de dados do Google Reviews
 
