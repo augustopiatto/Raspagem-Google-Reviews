@@ -14,7 +14,7 @@ O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em
 
 Dois fluxos pensados até agora utilizando serverless framework e lambda:
 
-1. Função que pega todas locations, reviews e data da última review de cada location -> fila do SQS (a mensagem seria um json do tipo {locationId: <id>, review: <string>, reviewDate: <datetime>}) -> função que roda pegando batches de N locations e faz as capturas e inserts.
+1. Função que pega todas locations, reviews e data da última review de cada location -> fila do SQS (a mensagem seria um json do tipo `{locationId: <id>, review: <string>, reviewDate: <datetime>}`) -> função que roda pegando batches de N locations e faz as capturas e inserts.
 
    1.1 Vantagens
 
@@ -161,18 +161,18 @@ O projeto inclui os seguintes scripts:
 
 ### Serverless
 
-[Implementar Lambda na AWS usando Serverless Node](https://www.youtube.com/watch?v=oFYFqOzJdqY).
-[Doc do serverless](https://www.serverless.com/framework/docs/tutorial).
+- [Implementar Lambda na AWS usando Serverless Node](https://www.youtube.com/watch?v=oFYFqOzJdqY).
+- [Doc do serverless](https://www.serverless.com/framework/docs/tutorial).
 
 ### AWS
 
-[Doc de fila SQS da AWS](https://aws.amazon.com/pt/sqs/).
-TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/)
+- [Doc de fila SQS da AWS](https://aws.amazon.com/pt/sqs/).
+- TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/).
 
 ## TODOS
 
-- Criar layer no Lambda com Node para o import do SQS
-- Ver doc pra ver como chegam as mensagens no segundo metodo
-- Começar a testar o banco (RDS) e biblioteca de ORM pra falar com o banco
-- Adicionar a biblioteca de ORM do banco na layer
-- Fazer um hash usando Nome do autor, data do comentário e o texto (ou parte dele) para gerar um ID no banco e verificar se o registro já existe
+- Criar layer no Lambda com Node para o import do SQS.
+- Ver doc pra ver como chegam as mensagens no segundo metodo.
+- Começar a testar o banco (RDS) e biblioteca de ORM pra falar com o banco.
+- Adicionar a biblioteca de ORM do banco na layer.
+- Fazer um hash usando Nome do autor, data do comentário e o texto (ou parte dele) para gerar um ID no banco e verificar se o registro já existe.
