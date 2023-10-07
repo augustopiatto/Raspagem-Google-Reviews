@@ -1,5 +1,3 @@
-org: ampiatto
-app: projeto-arcca
 service: projeto-arcca
 frameworkVersion: "3"
 
@@ -9,7 +7,7 @@ provider:
 
 functions:
   getPlacesReviews:
-    handler: src/index.getPlacesReviews,
+    handler: src/index.getPlacesReviews
     # events:
     #   - eventBridge:
     #     schedule: "* 10 * * *"
@@ -18,9 +16,11 @@ functions:
     #         - "R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003" # Nema 595
     #         - "R. Cap. Salomão, 11 - Humaitá, Rio de Janeiro - RJ, 22271-040" # Nema Humaita
     #         - "Av. Ataulfo de Paiva, 1120 - loja c - Leblon, Rio de Janeiro - RJ, 22440-035" # Nema Leblon
+    environment:
+      GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
 
   saveReviews:
-    handler: src/index.saveReviews,
+    handler: src/index.saveReviews
     # events:
     #   - sqs:
     #     arn: # TODO
