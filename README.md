@@ -164,6 +164,7 @@ O projeto inclui os seguintes scripts:
 - [Doc do serverless](https://www.serverless.com/framework/docs/tutorial).
 - [Implementar Lambda na AWS usando Serverless Node](https://www.youtube.com/watch?v=oFYFqOzJdqY).
 - [Implementar Layer na AWS usando Serverless Node](https://www.youtube.com/watch?v=aKD9Vftr6i4&t).
+- [Implementar RDS Postgres na AWS usando Serverless Node](https://medium.com/the-dev-caf%C3%A9/creating-a-serverless-rest-api-with-node-js-aws-lambda-api-gateway-rds-and-postgresql-303b0baac834).
 
 ### AWS
 
