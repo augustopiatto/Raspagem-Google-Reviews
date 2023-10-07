@@ -169,7 +169,7 @@ O projeto inclui os seguintes scripts:
 - [Doc de fila SQS da AWS](https://aws.amazon.com/pt/sqs/).
 - TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/).
 
-## TODOS
+## TODOs
 
 - Criar layer no Lambda com Node para o import do SQS.
 - Ver doc pra ver como chegam as mensagens no segundo metodo.
