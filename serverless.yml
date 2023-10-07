@@ -1,9 +1,13 @@
+useDotenv: true
+
 service: projeto-arcca
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
+  memorySize: 128
+  timeout: 30
 
 functions:
   getPlacesReviews:
@@ -13,15 +17,17 @@ functions:
     #     schedule: "* 10 * * *"
     #     input:
     #       addresses:
-    #         - "R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003" # Nema 595
-    #         - "R. Cap. Salomão, 11 - Humaitá, Rio de Janeiro - RJ, 22271-040" # Nema Humaita
-    #         - "Av. Ataulfo de Paiva, 1120 - loja c - Leblon, Rio de Janeiro - RJ, 22440-035" # Nema Leblon
+    #         - "Nema - R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003" # Nema 595
+    #         - "Nema - R. Cap. Salomão, 11 - Humaitá, Rio de Janeiro - RJ, 22271-040" # Nema Humaita
+    #         - "Nema - Av. Ataulfo de Paiva, 1120 - loja c - Leblon, Rio de Janeiro - RJ, 22440-035" # Nema Leblon
     environment:
       GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
+      QUEUE_URL: ${env:QUEUE_URL}
 
   saveReviews:
     handler: src/index.saveReviews
-    # events:
-    #   - sqs:
-    #     arn: # TODO
-    #     batchSize: 100
+    events:
+      - sqs:
+          arn: ${env:ARN_SQS_ARCCA_REVIEWS}
+          batchSize: 100
+          maximumBatchingWindow: 300

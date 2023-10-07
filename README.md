@@ -150,3 +150,11 @@ Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia 
 ## Observações
 
 Os secrets do .env foram enviados à AWS por meio do sls deploy, como variáveis
+
+## O que fazer
+
+- Criar layer no Lambda com Node para o import do SQS
+- Ver doc pra ver como chegam as mensagens no segundo metodo
+- Começar a testar o banco (RDS) e biblioteca pra falar com o banco
+- Adicionar a biblioteca do banco na layer
+- Fazer um hash usando Nome do autor, data do comentário e o texto (ou parte dele) para gerar um ID no banco e verificar se o registro já existe

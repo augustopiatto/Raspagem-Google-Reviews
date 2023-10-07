@@ -1,3 +1,7 @@
+const { SQS } = require("@aws-sdk/client-sqs");
+const crypto = require("crypto");
+const chunkArray = require("./helpers/chunkArray");
+
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 async function getPlacesReviews(event) {
@@ -31,13 +35,27 @@ async function getPlacesReviews(event) {
       finalResponse.reviews.push(...reviewsResponseJson.result.reviews);
     }
   }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(finalResponse),
-  };
+  // mandar pra fila (sqs)
+  const sqs = new SQS();
+  const entries = finalResponse.reviews.map((review) => ({
+    Id: crypto.randomUUID(),
+    MessageBody: JSON.stringify(review),
+  }));
+  const batches = chunkArray(entries, 10);
+  for (batch of batches) {
+    const params = {
+      Entries: batch,
+      QueueUrl: process.env.QUEUE_URL,
+    };
+    sqs.sendMessageBatch(params, function (error, data) {
+      if (error) console.log(error, error.stack);
+      else console.log(data);
+    });
+  }
 }
 
-async function saveReviews(event) {}
+async function saveReviews(event) {
+  console.log(event);
+}
 
 module.exports = { getPlacesReviews, saveReviews };
