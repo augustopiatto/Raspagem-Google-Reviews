@@ -33,7 +33,7 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
    - Implementação inicial mais simples.
    - Uso de menos recursos da AWS, e economia de dinheiro.
 
-   2.2 Desvantagens
+     2.2 Desvantagens
 
    - Baixa escalabilidade, precisa de mais suporte dos devs à longo prazo.
 
@@ -41,7 +41,7 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
 
 Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2 (testar e pegar essa diferença de tempo).
 
-[Fluxo](./src/assets/fluxo.png)
+![Fluxo](./src/assets/fluxo.png)
 
 ## Alternativas de projetos de captura de dados do Google Reviews
 
