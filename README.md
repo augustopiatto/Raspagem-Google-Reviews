@@ -172,7 +172,7 @@ O projeto inclui os seguintes scripts:
 
 ## TODOs
 
-- -Criar layer no Lambda com Node para o import do SQS.-
+- DONE - Criar layer no Lambda com Node para o import do SQS.
 - Ver doc pra ver como chegam as mensagens no segundo metodo.
 - Começar a testar o banco (RDS) e biblioteca de ORM pra falar com o banco.
 - Adicionar a biblioteca de ORM do banco na layer.
