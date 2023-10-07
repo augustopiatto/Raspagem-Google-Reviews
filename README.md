@@ -41,6 +41,8 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
 
 Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2 (testar e pegar essa diferença de tempo).
 
+![Alt text](image.png)
+
 ## Alternativas de projetos de captura de dados do Google Reviews
 
 1.
@@ -73,6 +75,7 @@ Para iniciar o projeto, siga os passos abaixo:
 ├── .serverless              # Pasta gerada pelo deploy do Serverless
 ├── src                      # Código fonte
 │   ├── helpers              # Pasta com funções de suporte
+│   ├── assets               # Pasta com arquivos estáticos
 │   └── index.js             # Entry point com funções para AWS
 ├── serverless.yml           # Configurações do projeto para uso da AWS
 ├── package.json             # Pacotes associados ao projeto
@@ -170,6 +173,6 @@ TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/)
 
 - Criar layer no Lambda com Node para o import do SQS
 - Ver doc pra ver como chegam as mensagens no segundo metodo
-- Começar a testar o banco (RDS) e biblioteca pra falar com o banco
-- Adicionar a biblioteca do banco na layer
+- Começar a testar o banco (RDS) e biblioteca de ORM pra falar com o banco
+- Adicionar a biblioteca de ORM do banco na layer
 - Fazer um hash usando Nome do autor, data do comentário e o texto (ou parte dele) para gerar um ID no banco e verificar se o registro já existe
