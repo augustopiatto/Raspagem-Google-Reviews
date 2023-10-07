@@ -21,7 +21,7 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
    - Facilita a escalabilidade conforme mais lojas vão sendo aderidas à empresa.
    - Poucas mudanças necessárias até que se chegue em um número realmente gigante de reviews (perto de 1.000.000 reviews por consulta)
 
-     1.2 Desvantagens
+   1.2 Desvantagens
 
    - Mais complexo de se implementar, pois exige a separação em dois métodos e o uso de fila.
    - Aumento no consumo de dinheiro à AWS por gastar mais recursos.
@@ -33,7 +33,7 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
    - Implementação inicial mais simples.
    - Uso de menos recursos da AWS, e economia de dinheiro.
 
-     2.2 Desvantagens
+   2.2 Desvantagens
 
    - Baixa escalabilidade, precisa de mais suporte dos devs à longo prazo.
 
