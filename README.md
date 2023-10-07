@@ -161,8 +161,9 @@ O projeto inclui os seguintes scripts:
 
 ### Serverless
 
-- [Implementar Lambda na AWS usando Serverless Node](https://www.youtube.com/watch?v=oFYFqOzJdqY).
 - [Doc do serverless](https://www.serverless.com/framework/docs/tutorial).
+- [Implementar Lambda na AWS usando Serverless Node](https://www.youtube.com/watch?v=oFYFqOzJdqY).
+- [Implementar Layer na AWS usando Serverless Node](https://www.youtube.com/watch?v=aKD9Vftr6i4&t).
 
 ### AWS
 
@@ -171,7 +172,7 @@ O projeto inclui os seguintes scripts:
 
 ## TODOs
 
-- Criar layer no Lambda com Node para o import do SQS.
+- -Criar layer no Lambda com Node para o import do SQS.-
 - Ver doc pra ver como chegam as mensagens no segundo metodo.
 - Começar a testar o banco (RDS) e biblioteca de ORM pra falar com o banco.
 - Adicionar a biblioteca de ORM do banco na layer.
