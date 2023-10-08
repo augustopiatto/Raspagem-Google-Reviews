@@ -4,7 +4,8 @@ const chunkArray = require("./helpers/chunkArray");
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-async function getPlacesReviews(event) {
+const wrappedGetPlacesReviews = async function (event) {
+  // https://stackoverflow.com/questions/49103137/why-does-aws-lambda-function-finishes-before-callback-function-is-executed
   const finalResponse = { reviews: [] };
 
   // temporario
@@ -50,8 +51,15 @@ async function getPlacesReviews(event) {
     sqs.sendMessageBatch(params, function (error, data) {
       if (error) console.log(error, error.stack);
       else console.log(data);
+      return;
     });
   }
+};
+
+function getPlacesReviews(event, context, callback) {
+  return wrappedGetPlacesReviews(event).then(() => {
+    callback(null, "Nice");
+  });
 }
 
 async function saveReviews(event) {

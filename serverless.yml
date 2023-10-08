@@ -8,12 +8,17 @@ provider:
   runtime: nodejs18.x
   memorySize: 128
   timeout: 30
-  environment:
-    NODE_PATH: "./:/opt/node_modules"
+  iam:
+    role:
+      # Não consegui definir uma role pra uma função específica, deixar pra todas funções
+      statements:
+        - Effect: Allow
+          Action: sqs:SendMessage
+          Resource: "*"
 
 layers:
   clientSQS:
-    path: node_modules/@aws-sdk/client-sqs
+    path: node_modules/@aws-sdk
 
 functions:
   getPlacesReviews:
