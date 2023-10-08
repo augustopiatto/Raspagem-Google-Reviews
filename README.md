@@ -174,7 +174,7 @@ O projeto inclui os seguintes scripts:
 ## TODOs
 
 - DONE - Criar layer no Lambda com Node para o import do SQS.
-- Ver doc pra ver como chegam as mensagens no segundo metodo.
+- DONE - Ver doc pra ver como chegam as mensagens no segundo metodo.
 - Começar a testar o banco (RDS) e biblioteca de ORM pra falar com o banco.
 - Adicionar a biblioteca de ORM do banco na layer.
 - Fazer um hash usando Nome do autor, data do comentário e o texto (ou parte dele) para gerar um ID no banco e verificar se o registro já existe.
