@@ -1,7 +1,7 @@
 const { Model } = require("objection");
 const Knex = require("knex");
 const dbConfig = require("../../config/db");
-const Reviews = require("../models/reviewsModel.js");
+const { Reviews } = require("../../models/reviewsModel.js");
 
 const knex = Knex({
   client: "postgres",
