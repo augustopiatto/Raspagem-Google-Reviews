@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-sqs": "^3.427.0"
+    "@aws-sdk/client-sqs": "^3.427.0",
+    "knex": "^3.0.1",
+    "objection": "^3.1.2",
+    "pg": "^8.11.3"
   }
 }

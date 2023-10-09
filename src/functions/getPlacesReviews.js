@@ -1,6 +1,6 @@
 const { SQS } = require("@aws-sdk/client-sqs");
 const crypto = require("crypto");
-const chunkArray = require("./helpers/chunkArray");
+const chunkArray = require("../helpers/chunkArray.js");
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
@@ -62,8 +62,4 @@ function getPlacesReviews(event, context, callback) {
   });
 }
 
-async function saveReviews(event) {
-  console.log(event);
-}
-
-module.exports = { getPlacesReviews, saveReviews };
+module.exports = { getPlacesReviews };

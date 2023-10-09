@@ -16,13 +16,9 @@ provider:
           Action: sqs:SendMessage
           Resource: "*"
 
-layers:
-  clientSQS:
-    path: node_modules/@aws-sdk
-
 functions:
   getPlacesReviews:
-    handler: src/index.getPlacesReviews
+    handler: src/functions/getPlacesReviews.getPlacesReviews
     # events:
     #   - eventBridge:
     #     schedule: "* 10 * * *"
@@ -34,11 +30,9 @@ functions:
     environment:
       GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
       QUEUE_URL: ${env:QUEUE_URL}
-    layers:
-      - !Ref ClientSQSLambdaLayer
 
   saveReviews:
-    handler: src/index.saveReviews
+    handler: src/functions/saveReviews.saveReviews
     events:
       - sqs:
           arn: ${env:ARN_SQS_ARCCA_REVIEWS}
