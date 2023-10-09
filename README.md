@@ -54,7 +54,7 @@ Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia 
 Para iniciar o projeto, siga os passos abaixo:
 
 - Clone o repositório em sua máquina local.
-- Pelo terminal, entre na pasta em que o projeto foi clonado.
+- Pelo terminal, entre na pasta em que o projeto foi clonado e rode `npm install`.
 - Faça o setup da sua conta Google:
   - Crie uma conta.
   - Siga este [tutorial](https://developers.google.com/maps/documentation/elevation/cloud-setup?hl=pt-br) para criar um projeto, ativar as APIs de Place e Geocoding, e gerar sua chave do Google API.
@@ -89,17 +89,18 @@ Para iniciar o projeto, siga os passos abaixo:
 
 O projeto inclui as seguintes tecnologias:
 
-- Serverless para abstrair a criação de funções lambdas, filas SQS e banco RDS da AWS
-- AWS para uso de Lambda, SQS e PostgreSQL, na execução de métodos simples
-- Google Place API e Geocode API para obtenção de dados dos clientes da Arcca
-- Node.js para desenvolvimento e criação de métodos
+- Serverless para abstrair a criação de funções lambdas, filas SQS e banco RDS da AWS.
+- AWS para uso de Lambda, SQS e PostgreSQL, na execução de métodos simples.
+- Google Place API e Geocode API para obtenção de dados dos clientes da Arcca.
+- Node.js para desenvolvimento e criação de métodos.
+- Bibliotecas Client SQS para gerenciamento de fila e Objection.JS para ORM de queries.
 
 ### Funcionalidades
 
 O projeto possui as seguintes funcionalidades:
 
-- Criar funções Lambda a partir de código local
-- Captar dados de reviews de clientes para armazenamento em banco Postgres e estruturação de dados
+- Criar funções Lambda a partir de código local.
+- Captar dados de reviews de clientes para armazenamento em banco Postgres e estruturação de dados.
 
 ## Scripts
 
@@ -107,7 +108,7 @@ O projeto inclui os seguintes scripts:
 
 `sls deploy`: Gera automaticamente a pilha com suas funções da AWS no seu painel, além de gerar um trigger para sua fila começar a funcionar.
 `sls invoke --function nomeDaFunção`: Executa uma função específica.
-`sls remove`: Remove a pilha e o trigger da fila
+`sls remove`: Remove a pilha e o trigger da fila.
 
 ## Decisões técnicas
 
