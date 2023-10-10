@@ -24,12 +24,13 @@ async function saveReviews(event) {
 
   const hashs = recordsWithHash.map((record) => record.id);
   const reviews = await Reviews.query().select("id").whereIn("id", hashs);
-  const dataToInsert = recordsWithHash
-    .filter((record) => !reviews.includes(record.id))
-    .reduce((acc, curr) => {
-      if (!acc.includes(curr)) acc.push(curr);
-      return acc;
-    }, []);
+  console.log(reviews);
+  const filteredReviews = recordsWithHash.filter(
+    (record) => !reviews.includes(record.id)
+  );
+  const dataToInsert = filteredReviews.filter((review, idx) => {
+    return idx === filteredReviews.findIndex((el) => review.id === el.id);
+  }, []);
 
   await Reviews.query().insert(dataToInsert);
 }
