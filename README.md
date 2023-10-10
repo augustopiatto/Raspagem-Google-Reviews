@@ -120,6 +120,7 @@ O projeto inclui os seguintes scripts:
     "results" : [
       {
         ...,
+        "formatted_address": "R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003, Brasil",
         "place_id": "ChIJtYuu0V25j4ARwu5e4wwRYgE",
         ...
       },

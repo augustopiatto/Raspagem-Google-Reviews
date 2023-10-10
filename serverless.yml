@@ -38,11 +38,14 @@ functions:
           arn: ${env:ARN_SQS_ARCCA_REVIEWS}
           batchSize: 100
           maximumBatchingWindow: 300
-    # Isso aqui deixa lento pra caramba https://stackoverflow.com/questions/47957820/lambda-in-vpc-deletion-takes-more-time
-    # vpc:
-    #   securityGroupIds:
-    #     - "sg-${env:SECURITY_GROUP_ID}"
-    #   subnetIds:
-    #     - "subnet-${env:SUBNET_ID_1}"
-    #     - "subnet-${env:SUBNET_ID_2}"
-    #     - "subnet-${env:SUBNET_ID_3}"
+    vpc:
+      securityGroupIds:
+        - "sg-${env:DEFAULT_SECURITY_GROUP_ID}"
+      subnetIds:
+        - "subnet-${env:SUBNET_ID_1}"
+    environment:
+      DATABASE: ${env:DATABASE}
+      HOST: ${env:HOST}
+      PORT: ${env:PORT}
+      USER: ${env:USER}
+      PASSWORD: ${env:PASSWORD}

@@ -2,7 +2,7 @@ const { Model } = require("objection");
 
 class Reviews extends Model {
   static get tableName() {
-    return "ReviewsTable";
+    return "reviews";
   }
   static get idColumn() {
     return "id";
@@ -13,11 +13,12 @@ class Reviews extends Model {
       required: ["autor", "comentario", "data", "loja"],
 
       properties: {
-        id: { type: "integer" },
-        autor: { type: "text", minLength: 1, maxLength: 255 },
-        comentario: { type: "text", minLength: 1 },
-        data: { type: "time" },
-        loja: { type: "text", minLength: 1, maxLength: 255 },
+        id: { type: "string" },
+        autor: { type: "string", minLength: 1, maxLength: 255 },
+        comentario: { type: "string" },
+        data: { type: "string" },
+        loja: { type: "string", minLength: 1, maxLength: 255 },
+        rating: { type: "number" },
       },
     };
   }

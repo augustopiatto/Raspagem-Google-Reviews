@@ -5,5 +5,6 @@ exports.up = (knex) => {
     table.text("comentario");
     table.text("loja");
     table.time("data");
+    table.integer("avaliacao");
   });
 };
