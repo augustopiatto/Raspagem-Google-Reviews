@@ -10,6 +10,40 @@ Este é um projeto que usa Serverless Framework, AWS Lambda, AWS SQS e PostgreSQ
 
 O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em tempo, de forma a facilitar seu acesso futuro.
 
+### Opções de projetos de captura de dados do Google Reviews
+
+1. Chamada à API usando Lambda, SQS e RDS.
+
+   1.1 Vantagens
+
+   1.2 Desvantagens
+
+   Caminho para implmentação
+
+3. Web Scraping.
+
+   2.1 Vantagens
+
+   2.2 Desvantagens
+
+   Caminho para implementação:
+
+   - 
+
+4. Serviço de terceiro (ex: [Blender](https://www.blendo.co/)).
+
+   3.1 Vantagens
+
+   - Implementação rápida.
+   - Suporte em caso de problemas.
+
+   3.2 Desvantagens
+
+   - Custoso à longo prazo.
+   - Perder as informações ou serviço em término de contrato.
+
+   [Caminho para implementação](https://www.blendo.co/documents/blendo-integrations/)
+
 ### Fluxos pensados
 
 Dois fluxos pensados até agora utilizando serverless framework e lambda:
@@ -21,7 +55,7 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
    - Facilita a escalabilidade conforme mais lojas vão sendo aderidas à empresa.
    - Poucas mudanças necessárias até que se chegue em um número realmente gigante de reviews (com periodicidade de 4 minutos, esse valor chegar a 3000 reviews - o Lambda de `getPlacesReviews` leva perto de 800ms-900ms para extrair 15 reviews). Ainda assim, pode-se paralelizar a busca de cada loja nesta mesma API para aumentar eficiência.
 
-     1.2 Desvantagens
+   1.2 Desvantagens
 
    - Mais complexo de se implementar, pois exige a separação em dois métodos e o uso de fila.
    - Aumento no consumo de dinheiro à AWS por gastar mais recursos.
@@ -33,35 +67,15 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
    - Implementação inicial mais simples.
    - Uso de menos recursos da AWS, e economia de dinheiro.
 
-     2.2 Desvantagens
+   2.2 Desvantagens
 
    - Baixa escalabilidade, precisa de mais suporte dos devs à longo prazo.
 
 #### Fluxo escolhido
 
-Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2 (testar e pegar essa diferença de tempo).
+Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2.
 
 ![Fluxo](./src/assets/fluxo.png)
-
-## Alternativas de projetos de captura de dados do Google Reviews
-
-1.
-
-1,1 Vantagens
-
-1.2 Desvantagens
-
-2.
-
-2,1 Vantagens
-
-2.2 Desvantagens
-
-3.
-
-3,1 Vantagens
-
-3.2 Desvantagens
 
 ## Começando
 
