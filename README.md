@@ -16,26 +16,38 @@ O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em
 
    1.1 Vantagens
 
+   - Controle sobre a aplicação.
+   - Controle de custos.
+
    1.2 Desvantagens
 
-   [Caminho para implmentação](#começando)
+   - Limite de respostas pela API (somente 5 reviews por requisição).
+   - Dependência de outro método (ex: Web Scraping) para o preenchimento inicial do banco, devido ao retorno limitado da API.
+   - Necessário conhecimento técnico de programação para montar o processo.
+
+   [Caminho para implementação](#começando)
 
 3. Web Scraping.
 
    2.1 Vantagens
 
+   - 
+
    2.2 Desvantagens
+
+   - 
 
    Caminho para implementação:
 
    - 
 
-4. Serviço de terceiro (ex: [Blender](https://www.blendo.co/)).
+5. Serviço de terceiro (ex: [Blender](https://www.blendo.co/)).
 
    3.1 Vantagens
 
    - Implementação rápida.
    - Suporte em caso de problemas.
+   - Não há necessidade de conhecimento técnico de programação para implementação.
 
    3.2 Desvantagens
 
