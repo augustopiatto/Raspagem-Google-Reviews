@@ -46,8 +46,22 @@ Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia 
 ## Alternativas de projetos de captura de dados do Google Reviews
 
 1.
+
+1,1 Vantagens
+
+1.2 Desvantagens
+
 2.
+
+2,1 Vantagens
+
+2.2 Desvantagens
+
 3.
+
+3,1 Vantagens
+
+3.2 Desvantagens
 
 ## Começando
 
@@ -67,6 +81,7 @@ Para iniciar o projeto, siga os passos abaixo:
     aws_secret_access_key = chave2
     ```
   - Entre no serviço SQS da AWS e crie uma fila.
+  - Entre no serviço RDS da AWS e crie um banco Postgres.
   - Crie um arquivo `.env` no seu projeto e copie as variáveis do arquivo `sample.env` e preencha com as suas.
 
 ## Estrutura de pasta
@@ -157,7 +172,6 @@ O projeto inclui os seguintes scripts:
   }
   ```
 - Por causa do retorno da Places API só trazer 5 `reviews`, se usa um eventBridge da AWS para que se busque as `reviews` de X em X minutos e seja enviado o retorno à uma fila SQS da AWS para enviar essas informações à função lambda `saveReviews` quer irá usar RDS da AWS para salvar em um banco Postgres.
-- Para os comentários mais antigos, se utiliza --- TODO ---.
 
 ## Referências
 
@@ -167,16 +181,16 @@ O projeto inclui os seguintes scripts:
 - [Implementar Lambda na AWS usando Serverless Node](https://www.youtube.com/watch?v=oFYFqOzJdqY).
 - [Implementar Layer na AWS usando Serverless Node](https://www.youtube.com/watch?v=aKD9Vftr6i4&t).
 - [Implementar RDS Postgres na AWS usando Serverless Node](https://medium.com/the-dev-caf%C3%A9/creating-a-serverless-rest-api-with-node-js-aws-lambda-api-gateway-rds-and-postgresql-303b0baac834).
+- [Doc do Objection](https://vincit.github.io/objection.js/)
+- [Doc do knex](https://knexjs.org/)
 
 ### AWS
 
 - [Doc de fila SQS da AWS](https://aws.amazon.com/pt/sqs/).
-- TODO - Ver como linkar o postgres (https://aws.amazon.com/pt/rds/).
+- [Doc do RDS da AWS](https://aws.amazon.com/pt/rds/).
 
-## TODOs
+## Melhorias futuras
 
-- DONE - Criar layer no Lambda com Node para o import do SQS.
-- DONE - Ver doc pra ver como chegam as mensagens no segundo metodo.
-- DONE - Adicionar a biblioteca de ORM do banco na layer.
-- DONE - Começar a testar o banco (RDS) e biblioteca de ORM pra falar com o banco.
-- Fazer um hash usando Nome do autor, data do comentário e o texto (ou parte dele) para gerar um ID no banco e verificar se o registro já existe.
+- Fazer a criação da fila SQS pelo serverless.
+- Fazer Layers para os módulos usados em cada Lambda.
+- Usar WebScraping para puxar dados mais antigos e preencher no banco.

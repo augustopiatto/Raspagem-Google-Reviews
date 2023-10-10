@@ -37,7 +37,7 @@ functions:
       - sqs:
           arn: ${env:ARN_SQS_ARCCA_REVIEWS}
           batchSize: 100
-          maximumBatchingWindow: 60
+          maximumBatchingWindow: 150
     vpc:
       securityGroupIds:
         - "sg-${env:DEFAULT_SECURITY_GROUP_ID}"
