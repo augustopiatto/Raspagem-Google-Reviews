@@ -18,7 +18,7 @@ O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em
 
    1.2 Desvantagens
 
-   Caminho para implmentação
+   [Caminho para implmentação](##começando)
 
 3. Web Scraping.
 
