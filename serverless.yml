@@ -19,14 +19,14 @@ provider:
 functions:
   getPlacesReviews:
     handler: src/functions/getPlacesReviews.getPlacesReviews
-    # events:
-    #   - eventBridge:
-    #     schedule: "* 10 * * *"
-    #     input:
-    #       addresses:
-    #         - "Nema - R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003" # Nema 595
-    #         - "Nema - R. Cap. Salomão, 11 - Humaitá, Rio de Janeiro - RJ, 22271-040" # Nema Humaita
-    #         - "Nema - Av. Ataulfo de Paiva, 1120 - loja c - Leblon, Rio de Janeiro - RJ, 22440-035" # Nema Leblon
+    events:
+      - eventBridge:
+          schedule: rate(1 minute)
+          input:
+            addresses:
+              - "Nema - R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003" # Nema 595
+              - "Nema - R. Cap. Salomão, 11 - Humaitá, Rio de Janeiro - RJ, 22271-040" # Nema Humaita
+              - "Nema - Av. Ataulfo de Paiva, 1120 - loja c - Leblon, Rio de Janeiro - RJ, 22440-035" # Nema Leblon
     environment:
       GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
       QUEUE_URL: ${env:QUEUE_URL}
@@ -45,7 +45,7 @@ functions:
         - "subnet-${env:SUBNET_ID_1}"
     environment:
       DATABASE: ${env:DATABASE}
-      HOST: ${env:HOST}
-      PORT: ${env:PORT}
-      USER: ${env:USER}
-      PASSWORD: ${env:PASSWORD}
+      DB_HOST: ${env:DB_HOST}
+      DB_PORT: ${env:DB_PORT}
+      DB_USER: ${env:DB_USER}
+      DB_PASSWORD: ${env:DB_PASSWORD}

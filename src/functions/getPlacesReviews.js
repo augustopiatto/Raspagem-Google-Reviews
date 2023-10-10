@@ -4,18 +4,11 @@ const chunkArray = require("../helpers/chunkArray.js");
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
+//: https://stackoverflow.com/questions/49103137/why-does-aws-lambda-function-finishes-before-callback-function-is-executed
 const wrappedGetPlacesReviews = async function (event) {
-  // https://stackoverflow.com/questions/49103137/why-does-aws-lambda-function-finishes-before-callback-function-is-executed
   const finalResponse = { reviews: [] };
 
-  // temporario
-  const addresses = [
-    "Nema - R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003",
-    "Nema - R. Cap. Salomão, 11 - Humaitá, Rio de Janeiro - RJ, 22271-040",
-    "Nema - Av. Ataulfo de Paiva, 1120 - loja c - Leblon, Rio de Janeiro - RJ, 22440-035",
-  ];
-
-  for (const address of addresses) {
+  for (const address of event.addresses) {
     // busca ID do local
     const encodedAddress = encodeURIComponent(address);
     const placeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&sensor=false&key=${GOOGLE_API_KEY}`;
