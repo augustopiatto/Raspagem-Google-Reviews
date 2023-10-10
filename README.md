@@ -189,14 +189,14 @@ Como é criado a partir do Serverless, se pode ver as configs no arquivo `server
 
 #### SQS
 
-![SQS](.src/assets/sqs.png)
+![SQS](./src/assets/sqs.png)
 Foi feita diretamente no painel da AWS, existe mesmo quando a stack é removida.
 Ao dar deploy do Serverless, um trigger é criado para o funcionamento da fila.
 
 #### RDS
 
-![Config](.src/assets/painel_db.png)
-![Postgres](.src/assets/dbeaver.png)
+![Config](./src/assets/painel_db.png)
+![Postgres](./src/assets/dbeaver.png)
 Foi feito diretamente no painel da AWS, existe mesmo quando a stack é removida.
 
 ## Referências
