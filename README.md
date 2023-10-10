@@ -19,7 +19,7 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
    1.1 Vantagens
 
    - Facilita a escalabilidade conforme mais lojas vão sendo aderidas à empresa.
-   - Poucas mudanças necessárias até que se chegue em um número realmente gigante de reviews (perto de 1.000.000 reviews por consulta)
+   - Poucas mudanças necessárias até que se chegue em um número realmente gigante de reviews (com periodicidade de 4 minutos, esse valor chegar a 3000 reviews - o Lambda de `getPlacesReviews` leva perto de 800ms-900ms para extrair 15 reviews). Ainda assim, pode-se paralelizar a busca de cada loja nesta mesma API para aumentar eficiência.
 
      1.2 Desvantagens
 
@@ -88,10 +88,15 @@ Para iniciar o projeto, siga os passos abaixo:
 
 ```
 ├── .serverless              # Pasta gerada pelo deploy do Serverless
+├── config                   # Configurações
+│   ├── db.js                # Variáveis do banco RDS
+├── migrations               # Migrações dos modelos criados
+├── models                   # Modelos
+├── node_modules             # Módulos utilizados no código
 ├── src                      # Código fonte
-│   ├── helpers              # Pasta com funções de suporte
 │   ├── assets               # Pasta com arquivos estáticos
-│   └── index.js             # Entry point com funções para AWS
+│   ├── functions            # Pasta com as funções lambdas
+│   └── helpers              # Pasta com funções de suporte
 ├── serverless.yml           # Configurações do projeto para uso da AWS
 ├── package.json             # Pacotes associados ao projeto
 ├── sample.env               # Exemplo de arquivo .env
@@ -126,6 +131,8 @@ O projeto inclui os seguintes scripts:
 `sls remove`: Remove a pilha e o trigger da fila.
 
 ## Decisões técnicas
+
+### Google
 
 - Uso da api Geocode API usando o endereço das lojas para obtenção do `locationId` do comércio, pois é um valor variável:
   - [https://maps.googleapis.com/maps/api/geocode/json?address=${address}&sensor=false&key=${API_KEY}](https://developers.google.com/maps/documentation/geocoding?hl=pt-br):
@@ -171,7 +178,26 @@ O projeto inclui os seguintes scripts:
     }
   }
   ```
+
+### AWS
+
 - Por causa do retorno da Places API só trazer 5 `reviews`, se usa um eventBridge da AWS para que se busque as `reviews` de X em X minutos e seja enviado o retorno à uma fila SQS da AWS para enviar essas informações à função lambda `saveReviews` quer irá usar RDS da AWS para salvar em um banco Postgres.
+
+#### Lambda
+
+Como é criado a partir do Serverless, se pode ver as configs no arquivo `serverless.yml`.
+
+#### SQS
+
+![SQS](.src/assets/sqs.png)
+Foi feita diretamente no painel da AWS, existe mesmo quando a stack é removida.
+Ao dar deploy do Serverless, um trigger é criado para o funcionamento da fila.
+
+#### RDS
+
+![Config](.src/assets/painel_db.png)
+![Postgres](.src/assets/dbeaver.png)
+Foi feito diretamente no painel da AWS, existe mesmo quando a stack é removida.
 
 ## Referências
 

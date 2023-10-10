@@ -21,7 +21,7 @@ functions:
     handler: src/functions/getPlacesReviews.getPlacesReviews
     events:
       - eventBridge:
-          schedule: rate(1 minute)
+          schedule: rate(4 minutes)
           input:
             addresses:
               - "Nema - R. Visc. de Pirajá, 595 - Ipanema, Rio de Janeiro - RJ, 22410-003" # Nema 595
@@ -37,7 +37,7 @@ functions:
       - sqs:
           arn: ${env:ARN_SQS_ARCCA_REVIEWS}
           batchSize: 100
-          maximumBatchingWindow: 150
+          maximumBatchingWindow: 300
     vpc:
       securityGroupIds:
         - "sg-${env:DEFAULT_SECURITY_GROUP_ID}"
