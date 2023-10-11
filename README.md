@@ -27,21 +27,29 @@ O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em
 
    [Caminho para implementação](#começando)
 
-3. Web Scraping.
+2. Web Scraping. Ex: Scrapy
 
    2.1 Vantagens
 
-   - 
+   - Baixo custo.
+   - Execução rápida.
 
    2.2 Desvantagens
 
-   - 
+   - Mudanças no layout/código HTML podem prejudicar a funcionalidade do seu bot/crawler (manutenção contínua).
+   - O processo de setup é complexo.
+   - Os bots/crawlers podem ser bloqueados pelo site.
 
-   Caminho para implementação:
+   Caminho para implementação (com Scrapy):
 
-   - 
+   - [Parte 1](https://scrapeops.io/python-scrapy-playbook/scrapy-beginners-guide/)
+   - [Parte 2](https://scrapeops.io/python-scrapy-playbook/scrapy-beginners-guide-cleaning-data/)
+   - [Parte 3](https://scrapeops.io/python-scrapy-playbook/scrapy-beginners-guide-storing-data/)
+   - [Parte 4](https://scrapeops.io/python-scrapy-playbook/scrapy-beginners-guide-user-agents-proxies/)
+   - [Parte 5](https://scrapeops.io/python-scrapy-playbook/scrapy-beginners-guide-deployment-scheduling-monitoring/)
 
-5. Serviço de terceiro (ex: [Blender](https://www.blendo.co/)).
+
+4. Serviço de terceiro (ex: [Blender para uso de API](https://www.blendo.co/) ou [Zyte para uso de Web Scraping](https://www.zyte.com/)).
 
    3.1 Vantagens
 
