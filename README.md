@@ -2,13 +2,13 @@
 
 ## Visão geral do projeto
 
-Este é um projeto que usa Serverless Framework, AWS Lambda, AWS SQS e PostgreSQL.
+Este é um projeto que usa Serverless Framework, AWS Lambda, AWS SQS e RDS PostgreSQL.
 
 É uma stack de desenvolvimento moderna para se facilitar a criação de tasks recorrentes.
 
 ## Preview
 
-O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em tempo, de forma a facilitar seu acesso futuro.
+O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em tempo, de forma a facilitar seu acesso futuro e fazer análises a partir destes dados.
 
 ### Opções de projetos de captura de dados do Google Reviews
 
@@ -27,7 +27,7 @@ O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em
 
    [Caminho para implementação](#começando)
 
-2. Web Scraping. Ex: Scrapy
+2. Web Scraping. Ex: [Scrapy](https://scrapy.org/).
 
    2.1 Vantagens
 
@@ -49,7 +49,7 @@ O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em
    - [Parte 5](https://scrapeops.io/python-scrapy-playbook/scrapy-beginners-guide-deployment-scheduling-monitoring/)
 
 
-4. Serviço de terceiro (ex: [Blender para uso de API](https://www.blendo.co/) ou [Zyte para uso de Web Scraping](https://www.zyte.com/)).
+3. Serviço de terceiro (ex: [Blender para uso de API](https://www.blendo.co/) ou [Zyte para uso de Web Scraping](https://www.zyte.com/)).
 
    3.1 Vantagens
 
@@ -66,9 +66,9 @@ O objetivo é gerar um registro das reviews de 3 locais específicos de tempo em
 
 ### Fluxos pensados
 
-Dois fluxos pensados até agora utilizando serverless framework e lambda:
+Dois fluxos pensados até agora utilizando Serverless Framework e Lambda:
 
-1. Função que pega todas locations, reviews e data da última review de cada location -> fila do SQS (a mensagem seria um json do tipo `{locationId: <id>, review: <string>, reviewDate: <datetime>}`) -> função que roda pegando batches de N locations e faz as capturas e inserts.
+1. Função que pega todas locations, reviews e data da última review de cada location -> fila do SQS (a mensagem seria um json do tipo `{id: <id>, comentario: <string>, data: <datetime>, loja: <string>, avaliacao: <int>}`) -> função que roda pegando batches de N locations e faz as capturas e inserts.
 
    1.1 Vantagens
 
@@ -93,7 +93,7 @@ Dois fluxos pensados até agora utilizando serverless framework e lambda:
 
 #### Fluxo escolhido
 
-Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo razoalvemente menor fazendo pelo método 2.
+Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo menor fazendo pelo método 2.
 
 ![Fluxo](./src/assets/fluxo.png)
 
@@ -143,18 +143,19 @@ Para iniciar o projeto, siga os passos abaixo:
 
 O projeto inclui as seguintes tecnologias:
 
-- Serverless para abstrair a criação de funções lambdas, filas SQS e banco RDS da AWS.
-- AWS para uso de Lambda, SQS e PostgreSQL, na execução de métodos simples.
+- Serverless para abstrair a criação de funções Lambdas, EventBridge, filas SQS.
+- AWS para uso de Lambda, EventBridge, SQS e RDS PostgreSQL, na execução de métodos simples.
 - Google Place API e Geocode API para obtenção de dados dos clientes da Arcca.
 - Node.js para desenvolvimento e criação de métodos.
-- Bibliotecas Client SQS para gerenciamento de fila e Objection.JS para ORM de queries.
+- Bibliotecas Client SQS para gerenciamento de fila e Objection.js (depende de bibliotecas pg e knex) para ORM de queries.
 
 ### Funcionalidades
 
 O projeto possui as seguintes funcionalidades:
 
 - Criar funções Lambda a partir de código local.
-- Captar dados de reviews de clientes para armazenamento em banco Postgres e estruturação de dados.
+- Rodar o método `getPlacesReviews` a cada 4 minutos usando EventBridge e enviar seu retorno para uma fila SQS.
+- Rodar o método `saveReviews` a cada 4 minutos, consumindo a fila SQS e enviar as informações para armazenamento em banco RDS Postgres e estruturação de dados.
 
 ## Scripts
 
@@ -168,7 +169,7 @@ O projeto inclui os seguintes scripts:
 
 ### Google
 
-- Uso da api Geocode API usando o endereço das lojas para obtenção do `locationId` do comércio, pois é um valor variável:
+- Uso da api Geocode API usando o endereço das lojas para obtenção do `locationId` do comércio, pois é um [valor variável](https://developers.google.com/maps/documentation/places/web-service/place-id?hl=pt-br#id-overview):
   - [https://maps.googleapis.com/maps/api/geocode/json?address=${address}&sensor=false&key=${API_KEY}](https://developers.google.com/maps/documentation/geocoding?hl=pt-br):
   ```
   Retorno do endpoint
