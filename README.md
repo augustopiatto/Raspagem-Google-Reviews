@@ -1,4 +1,4 @@
-# Arcca
+# Rapagem do Google Reviews
 
 ## Visão geral do projeto
 
@@ -93,7 +93,7 @@ Dois fluxos pensados até agora utilizando Serverless Framework e Lambda:
 
 #### Fluxo escolhido
 
-Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio da Arcca é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo menor fazendo pelo método 2.
+Penso que faz mais sentido o fluxo 1, mesmo que aumente a complexidade. A ideia do negócio é aumentar com o tempo e com isso se torna necessário fazer um sistema que seja escalável, ainda que hoje em dia leve um tempo menor fazendo pelo método 2.
 
 ![Fluxo](./src/assets/fluxo.png)
 
@@ -145,7 +145,7 @@ O projeto inclui as seguintes tecnologias:
 
 - Serverless para abstrair a criação de funções Lambdas, EventBridge, filas SQS.
 - AWS para uso de Lambda, EventBridge, SQS e RDS PostgreSQL, na execução de métodos simples.
-- Google Place API e Geocode API para obtenção de dados dos clientes da Arcca.
+- Google Place API e Geocode API para obtenção de dados dos clientes.
 - Node.js para desenvolvimento e criação de métodos.
 - Bibliotecas Client SQS para gerenciamento de fila e Objection.js (depende de bibliotecas pg e knex) para ORM de queries.
 
